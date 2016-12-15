@@ -1,0 +1,424 @@
+{
+  "status": "success",
+  "message": "success",
+  "responseData": {
+    "data": [
+      {
+        "key": 1,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 2,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 3,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 4,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 5,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 6,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 7,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 8,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 9,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 10,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 11,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 12,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 13,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 14,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 15,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 16,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 17,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 18,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 19,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 20,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 21,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 22,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      },
+      {
+        "key": 23,
+        "value": [
+          "",
+          "Mark",
+          "Otto",
+          "@mdo",
+          "md@gmail.com",
+          [
+            "31",
+            "32"
+          ]
+        ]
+      }
+    ],
+    "totalCount": 23,
+    "rules": {
+      "thead": [
+        {
+          "className": "td-id",
+          "title": "#",
+          "value": "serialNum",
+          "sort": "asc",
+          "filter": false
+        },
+        {
+          "title": "First Name",
+          "value": "firstName",
+          "filter": true,
+          "editable": true,
+          "addable": true,
+          "editType": "select",
+          "columnEditable": true,
+          "editValue": [
+            {
+              "label": "select 1",
+              "value": "Mark"
+            },
+            {
+              "label": "select 2",
+              "value": "Mark1"
+            }
+          ]
+        },
+        {
+          "title": "Last Name",
+          "value": "lastName",
+          "filter": true,
+          "editable": true,
+          "addable": true,
+          "columnEditable": true,
+          "editType": "radio",
+          "editValue": [
+            {
+              "label": "type 1",
+              "value": "Otto"
+            },
+            {
+              "label": "type 2",
+              "value": "Otto1"
+            }
+          ]
+        },
+        {
+          "title": "Username",
+          "value": "username",
+          "filter": true,
+          "editable": true,
+          "addable": true,
+          "columnEditable": true,
+          "editType": "text"
+        },
+        {
+          "title": "Email",
+          "value": "email",
+          "columnEditable": true,
+          "editable": true,
+          "editType": "text",
+          "addable": true,
+          "filter": true
+        },
+        {
+          "title": "Age",
+          "value": "age",
+          "filter": true,
+          "editable": true,
+          "addable": true,
+          "editType": "checkbox",
+          "columnEditable": true,
+          "editValue": [
+            {
+              "label": "31",
+              "value": "31"
+            },
+            {
+              "label": "32",
+              "value": "32"
+            }
+          ]
+        }
+      ],
+      "tfoot": [
+        {
+          "className": "td-foot",
+          "colSpan": 7,
+          "title": "this is the footer for this table"
+        }
+      ]
+    }
+  }
+}
