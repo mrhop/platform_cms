@@ -2,3 +2,6 @@
 
 打包时需要做的修改 webpack.config.js 其中的var basePath = 属性
 以及更改html中js的引用
+首先保证login和index的正确跳转
+1.cms left tree
+2.cms module的创建和实现
