@@ -7,7 +7,7 @@ export default [
         <ReactRouter.IndexRoute component={Index.dashBoard}/>
         <ReactRouter.Route path={baseUrl+"website/list.html"} component={Index.websites}/>
         <ReactRouter.Route path={baseUrl+"website/info.html"} component={Index.websiteUpdate}/>
-        <ReactRouter.Route path={baseUrl+"website/add.html"} component={Index.websiteUpdate}/>
+        <ReactRouter.Route path={baseUrl+"website/add.html"} component={Index.websiteAdd}/>
         <ReactRouter.Route path={baseUrl+"resource/list.html"} component={Index.resources}/>
         <ReactRouter.Route path={baseUrl+"resource/info.html"} component={Index.resourceUpdate}/>
         <ReactRouter.Route path={baseUrl+"resource/add.html"} component={Index.resourceAdd}/>

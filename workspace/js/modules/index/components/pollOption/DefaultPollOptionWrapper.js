@@ -11,8 +11,8 @@ export class PollOptionListWrapper extends React.Component {
     }
     render() {
         let symbol = 'table-pollOption-list'
-        return <Table.RowEditableTable minHeight={300} addUrl={baseUrl+'pollOption/add.html'}
-                                       updateUrl={baseUrl+'pollOption/info.html'} endpoints={endpointsLocal}
+        return <Table.RowEditableTable minHeight={300} addUrl={baseUrl+'polloption/add.html'}
+                                       updateUrl={baseUrl+'polloption/info.html'} endpoints={endpointsLocal}
                                        symbol={symbol}  {...this.props}/>
     }
 }
@@ -40,7 +40,7 @@ export class PollOptionUpdateWrapper extends React.Component {
     }
 
     backup() {
-        ReactRouter.browserHistory.push(baseUrl + "pollOption/list.html");
+        ReactRouter.browserHistory.push(baseUrl + "polloption/list.html");
     }
 
     render() {
@@ -48,7 +48,7 @@ export class PollOptionUpdateWrapper extends React.Component {
         return <Form.HorizontalForm url={endpoints.pollOptionupdate} callback={this.callback.bind(this)}
                                     initUrl={endpoints.pollOptioninfo+'?key='+this.props.location.query.key}
                                     updateUrl={endpoints.pollOptionoptionupdate}
-                                    submitedRouteUrl={baseUrl+"pollOption/list.html"}
+                                    submitedRouteUrl={baseUrl+"polloption/list.html"}
                                     backup={this.backup}
                                     symbol={symbol}/>
     }

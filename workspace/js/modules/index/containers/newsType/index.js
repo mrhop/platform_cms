@@ -3,7 +3,7 @@
  */
 require('./index.scss');
 
-import {WebsiteListWrapper,WebsiteUpdateWrapper,WebsiteAddWrapper} from '../../components/website/DefaultWebsiteWrapper';
+import {NewsTypeListWrapper,NewsTypeUpdateWrapper,NewsTypeAddWrapper} from '../../components/newsType/DefaultNewsTypeWrapper';
 
 export default class TableMainBlock extends React.Component {
     constructor(props) {
@@ -13,8 +13,8 @@ export default class TableMainBlock extends React.Component {
     render() {
         return (
             <div>
-                <Panel.PanelWithHeader panelValues={{title : '网站列表'}}>
-                    <WebsiteListWrapper />
+                <Panel.PanelWithHeader panelValues={{title : '新闻类型列表'}}>
+                    <NewsTypeListWrapper />
                 </Panel.PanelWithHeader>
             </div>)
             ;
@@ -29,8 +29,8 @@ export class TableUpdateBlock extends React.Component {
 
     render() {
         return (
-            <Panel.PanelWithHeader panelValues={{title : '更新网站信息'}}>
-                <WebsiteUpdateWrapper {...this.props}/>
+            <Panel.PanelWithHeader panelValues={{title : '更新新闻类型'}}>
+                <NewsTypeUpdateWrapper {...this.props}/>
             </Panel.PanelWithHeader>);
     }
 }
@@ -42,8 +42,8 @@ export class TableAddBlock extends React.Component {
 
     render() {
         return (
-            <Panel.PanelWithHeader panelValues={{title : '新增网站'}}>
-                <WebsiteAddWrapper {...this.props}/>
+            <Panel.PanelWithHeader panelValues={{title : '新增新闻类型'}}>
+                <NewsTypeAddWrapper {...this.props}/>
             </Panel.PanelWithHeader>);
     }
 }

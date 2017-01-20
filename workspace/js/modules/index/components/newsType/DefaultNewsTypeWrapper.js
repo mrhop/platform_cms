@@ -11,8 +11,8 @@ export class NewsTypeListWrapper extends React.Component {
     }
     render() {
         let symbol = 'table-newsType-list'
-        return <Table.RowEditableTable minHeight={300} addUrl={baseUrl+'newsType/add.html'}
-                                       updateUrl={baseUrl+'newsType/info.html'} endpoints={endpointsLocal}
+        return <Table.RowEditableTable minHeight={300} addUrl={baseUrl+'newstype/add.html'}
+                                       updateUrl={baseUrl+'newstype/info.html'} endpoints={endpointsLocal}
                                        symbol={symbol}  {...this.props}/>
     }
 }
@@ -40,7 +40,7 @@ export class NewsTypeUpdateWrapper extends React.Component {
     }
 
     backup() {
-        ReactRouter.browserHistory.push(baseUrl + "newsType/list.html");
+        ReactRouter.browserHistory.push(baseUrl + "newstype/list.html");
     }
 
     render() {
@@ -48,7 +48,7 @@ export class NewsTypeUpdateWrapper extends React.Component {
         return <Form.HorizontalForm url={endpoints.newsTypeupdate} callback={this.callback.bind(this)}
                                     initUrl={endpoints.newsTypeinfo+'?key='+this.props.location.query.key}
                                     updateUrl={endpoints.newsTypeoptionupdate}
-                                    submitedRouteUrl={baseUrl+"newsType/list.html"}
+                                    submitedRouteUrl={baseUrl+"newstype/list.html"}
                                     backup={this.backup}
                                     symbol={symbol}/>
     }

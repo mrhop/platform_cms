@@ -19,13 +19,13 @@ export default class Checkbox extends React.Component {
     onChange(e) {
         let value = this.props.data[this.props.name]
         var item = e.target.value;
-        if(this.props.rule.dataType ){
-            if(this.props.rule.dataType == "number" ){
-                if(!isNaN(item) ){
-                    item =  Number(item)
+        if (this.props.rule.dataType) {
+            if (this.props.rule.dataType == "number") {
+                if (!isNaN(item)) {
+                    item = Number(item)
                 }
-            }else if(this.props.rule.dataType == "boolean" ){
-                item =  Boolean(item)
+            } else if (this.props.rule.dataType == "boolean") {
+                item = Boolean(item)
             }
         }
         if (e.target.checked) {
@@ -67,23 +67,23 @@ export default class Checkbox extends React.Component {
                 labelClassNames = 'col-sm-2'
                 errorBlockClassNames = classNames(errorBlockClassNames, 'col-sm-10')
         }
-        let items = rule.items.map(function (item, index) {
-            return <li key={index}>
-                <input type="checkbox" id={this.props.id + '-' + index} name={rule.name} value={item.value}
-                       onChange={this.onChange.bind(this)}
-                       checked={this.props.data[this.props.name] ? (this.props.data[this.props.name].indexOf(item.value) > -1 ? 'checked' : false) : false}/>
-                <label htmlFor={this.props.id + '-' + index}>
-                    <span>{item.label}</span>
-                </label>
-            </li>
-        }, this);
+        let items = rule.items && rule.items.map(function (item, index) {
+                return <li key={index}>
+                    <input type="checkbox" id={this.props.id + '-' + index} name={rule.name} value={item.value}
+                           onChange={this.onChange.bind(this)}
+                           checked={this.props.data[this.props.name] ? (this.props.data[this.props.name].indexOf(item.value) > -1 ? 'checked' : false) : false}/>
+                    <label htmlFor={this.props.id + '-' + index}>
+                        <span>{item.label}</span>
+                    </label>
+                </li>
+            }, this);
         return <div className={eleClassNames} id={this.props.id}>
             <label
                 className={labelClassNames}>{rule.label ? rule.label : null}{rule.label && rule.required ?
                 <span className="required">*</span> : null}</label>
             {this.props.formType === 'horizontalForm' ?
                 <div className="col-sm-10">
-                    <ul className="checkbox"> {items}</ul>
+                    {items&&<ul className="checkbox"> {items}</ul>}
                 </div> : <ul className="checkbox"> {items}</ul> }
             {(rule.validated === undefined || rule.validated) ? null :
                 <span className={errorBlockClassNames}>{rule.errorMsg}</span>}

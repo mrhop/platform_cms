@@ -11,8 +11,8 @@ export class FileLibraryTypeListWrapper extends React.Component {
     }
     render() {
         let symbol = 'table-fileLibraryType-list'
-        return <Table.RowEditableTable minHeight={300} addUrl={baseUrl+'fileLibraryType/add.html'}
-                                       updateUrl={baseUrl+'fileLibraryType/info.html'} endpoints={endpointsLocal}
+        return <Table.RowEditableTable minHeight={300} addUrl={baseUrl+'filelibrarytype/add.html'}
+                                       updateUrl={baseUrl+'filelibrarytype/info.html'} endpoints={endpointsLocal}
                                        symbol={symbol}  {...this.props}/>
     }
 }
@@ -40,7 +40,7 @@ export class FileLibraryTypeUpdateWrapper extends React.Component {
     }
 
     backup() {
-        ReactRouter.browserHistory.push(baseUrl + "fileLibraryType/list.html");
+        ReactRouter.browserHistory.push(baseUrl + "filelibrarytype/list.html");
     }
 
     render() {
@@ -48,7 +48,7 @@ export class FileLibraryTypeUpdateWrapper extends React.Component {
         return <Form.HorizontalForm url={endpoints.fileLibraryTypeupdate} callback={this.callback.bind(this)}
                                     initUrl={endpoints.fileLibraryTypeinfo+'?key='+this.props.location.query.key}
                                     updateUrl={endpoints.fileLibraryTypeoptionupdate}
-                                    submitedRouteUrl={baseUrl+"fileLibraryType/list.html"}
+                                    submitedRouteUrl={baseUrl+"filelibrarytype/list.html"}
                                     backup={this.backup}
                                     symbol={symbol}/>
     }

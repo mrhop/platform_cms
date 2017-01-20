@@ -3,7 +3,7 @@
  */
 require('./index.scss');
 
-import {NewsTypeListWrapper,NewsTypeUpdateWrapper,NewsTypeAddWrapper} from '../../components/newsType/DefaultNewsTypeWrapper';
+import {NewsListWrapper,NewsUpdateWrapper,NewsAddWrapper} from '../../components/news/DefaultNewsWrapper';
 
 export default class TableMainBlock extends React.Component {
     constructor(props) {
@@ -13,8 +13,8 @@ export default class TableMainBlock extends React.Component {
     render() {
         return (
             <div>
-                <Panel.PanelWithHeader panelValues={{title : '新闻类型列表'}}>
-                    <NewsTypeListWrapper />
+                <Panel.PanelWithHeader panelValues={{title : '新闻列表'}}>
+                    <NewsListWrapper />
                 </Panel.PanelWithHeader>
             </div>)
             ;
@@ -29,8 +29,8 @@ export class TableUpdateBlock extends React.Component {
 
     render() {
         return (
-            <Panel.PanelWithHeader panelValues={{title : '更新新闻类型'}}>
-                <NewsTypeUpdateWrapper {...this.props}/>
+            <Panel.PanelWithHeader panelValues={{title : '更新新闻'}}>
+                <NewsUpdateWrapper {...this.props}/>
             </Panel.PanelWithHeader>);
     }
 }
@@ -42,8 +42,8 @@ export class TableAddBlock extends React.Component {
 
     render() {
         return (
-            <Panel.PanelWithHeader panelValues={{title : '新增新闻类型'}}>
-                <NewsTypeAddWrapper {...this.props}/>
+            <Panel.PanelWithHeader panelValues={{title : '新增新闻'}}>
+                <NewsAddWrapper {...this.props}/>
             </Panel.PanelWithHeader>);
     }
 }

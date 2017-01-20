@@ -29,7 +29,7 @@ export class TableUpdateBlock extends React.Component {
 
     render() {
         return (
-            <Panel.PanelWithHeader panelValues={{title : '更新网站信息'}}>
+            <Panel.PanelWithHeader panelValues={{title : '更新网站'}}>
                 <WebsiteUpdateWrapper {...this.props}/>
             </Panel.PanelWithHeader>);
     }

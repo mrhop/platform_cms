@@ -11,8 +11,8 @@ export class FileLibraryListWrapper extends React.Component {
     }
     render() {
         let symbol = 'table-fileLibrary-list'
-        return <Table.RowEditableTable minHeight={300} addUrl={baseUrl+'fileLibrary/add.html'}
-                                       updateUrl={baseUrl+'fileLibrary/info.html'} endpoints={endpointsLocal}
+        return <Table.RowEditableTable minHeight={300} addUrl={baseUrl+'filelibrary/add.html'}
+                                       updateUrl={baseUrl+'filelibrary/info.html'} endpoints={endpointsLocal}
                                        symbol={symbol}  {...this.props}/>
     }
 }
@@ -40,15 +40,15 @@ export class FileLibraryUpdateWrapper extends React.Component {
     }
 
     backup() {
-        ReactRouter.browserHistory.push(baseUrl + "fileLibrary/list.html");
+        ReactRouter.browserHistory.push(baseUrl + "filelibrary/list.html");
     }
 
     render() {
-        let symbol = 'form-fileLibrary-update'
+        let symbol = 'form-filelibrary-update'
         return <Form.HorizontalForm url={endpoints.fileLibraryupdate} callback={this.callback.bind(this)}
                                     initUrl={endpoints.fileLibraryinfo+'?key='+this.props.location.query.key}
                                     updateUrl={endpoints.fileLibraryoptionupdate}
-                                    submitedRouteUrl={baseUrl+"fileLibrary/list.html"}
+                                    submitedRouteUrl={baseUrl+"filelibrary/list.html"}
                                     backup={this.backup}
                                     symbol={symbol}/>
     }

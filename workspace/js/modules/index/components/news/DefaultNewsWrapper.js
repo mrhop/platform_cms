@@ -1,6 +1,6 @@
 //--DEMOtABLE STRUCTURE
 let endpointsLocal = {
-    getTableUrl: endpoints.newss,
+    getTableUrl: endpoints.news,
     deleteTableRowUrl: endpoints.deletenews
 }
 

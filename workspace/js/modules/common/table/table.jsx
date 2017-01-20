@@ -656,15 +656,15 @@ class TableTd extends React.Component {
             this.props.editable && theadItem.className == 'td-id' &&
             <ReactRouter.Link to={{ pathname: this.props.updateUrl, query: { key: this.props.rowKey }}}>
                 <span
-                    className={tdValueClassName}>{!tdItem ? rowIndex + 1 + (this.props.rowSize ? this.props.rowSize * this.props.currentPage : 0) : tdItem.toString()}</span>
+                    className={tdValueClassName}>{!tdItem ? rowIndex + 1 + (this.props.rowSize ? this.props.rowSize * this.props.currentPage : 0) : tdItem&&tdItem.toString()}</span>
             </ReactRouter.Link>
         }{
             !this.props.editable && theadItem.className == 'td-id' &&
             <span
-                className={tdValueClassName}>{!tdItem ? rowIndex + 1 + (this.props.rowSize ? this.props.rowSize * this.props.currentPage : 0) : tdItem.toString()}</span>
+                className={tdValueClassName}>{!tdItem ? rowIndex + 1 + (this.props.rowSize ? this.props.rowSize * this.props.currentPage : 0) : tdItem&&tdItem.toString()}</span>
         }{
             theadItem.className != 'td-id' &&
-            <span className={tdValueClassName}>{tdItem.toString()}</span>
+            <span className={tdValueClassName}>{tdItem&&tdItem.toString()}</span>
         }{editContent}{columnEditContent}{columnEditContentAction}
         </td>);
     }
