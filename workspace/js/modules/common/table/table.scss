@@ -4,6 +4,7 @@
   .table-content {
     .table {
       margin-bottom: 0;
+      word-break: break-all;
       thead {
         tr {
           th {
@@ -21,13 +22,13 @@
                 content: '\e91a';
               }
               &.asc {
-                &:before{
+                &:before {
                   content: '\e903';
                 }
                 @include rotate(180deg);
               }
               &.desc {
-                &:before{
+                &:before {
                   content: '\e903';
                 }
                 @include rotate(0deg);

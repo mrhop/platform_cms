@@ -43,6 +43,9 @@
     }
   }
   @include transition(all 200ms linear);
+  div.view{
+    margin-bottom: 49px!important;
+  }
 }
 
 .al-sidebar .direct-line {
