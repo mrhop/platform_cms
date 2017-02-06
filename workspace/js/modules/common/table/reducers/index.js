@@ -31,6 +31,16 @@ function main(state = {}, action) {
                         state[action.requestCondition.symbol].tableRules = action.response.responseData.rules;
                         state[action.requestCondition.symbol].additionalFeature = action.response.responseData.additionalFeature;
                     }
+                    if (state[action.requestCondition.symbol].tableRules && action.response.responseData.updateRules) {
+                        for (var i in action.response.responseData.updateRules) {
+                            var value = action.response.responseData.updateRules[i].value;
+                            for (var j in state[action.requestCondition.symbol].tableRules.thead) {
+                                if (value == state[action.requestCondition.symbol].tableRules.thead[j].value) {
+                                    l_assign(state[action.requestCondition.symbol].tableRules.thead[j], action.response.responseData.updateRules[i]);
+                                }
+                            }
+                        }
+                    }
                     state[action.requestCondition.symbol].totalCount = action.response.responseData.totalCount;
                     state[action.requestCondition.symbol].rowSize = action.response.responseData.rowSize;
                     state[action.requestCondition.symbol].currentPage = action.response.responseData.currentPage;
