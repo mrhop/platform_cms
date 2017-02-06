@@ -9,10 +9,14 @@ export class PollOptionListWrapper extends React.Component {
     constructor(props) {
         super(props);
     }
+
     render() {
         let symbol = 'table-pollOption-list'
         return <Table.RowEditableTable minHeight={300} addUrl={baseUrl+'polloption/add.html'}
-                                       updateUrl={baseUrl+'polloption/info.html'} endpoints={endpointsLocal}
+                                       updateUrl={baseUrl+'polloption/info.html'} endpoints={{
+    getTableUrl: endpoints.pollOptions+'?key='+this.props.location.query.key,
+    deleteTableRowUrl: endpoints.deletepollOption
+}}
                                        symbol={symbol}  {...this.props}/>
     }
 }
@@ -64,7 +68,7 @@ export class PollOptionAddWrapper extends React.Component {
                 title: '关闭',
             }
         }
-        this.serverSuccess= {
+        this.serverSuccess = {
             title: '新增投票选项成功',
             footerCloseButton: {
                 visible: true,
@@ -78,7 +82,7 @@ export class PollOptionAddWrapper extends React.Component {
             this.serverFailureModalData.content = data.data.message
             Modal.createModal.bind(this, {modalValues: this.serverFailureModalData, type: 'messageError'})()
             return false
-        }else{
+        } else {
             this.serverSuccess.content = "保存成功"
             Modal.createModal.bind(this, {modalValues: this.serverSuccess, type: 'messageSuccess'})()
         }

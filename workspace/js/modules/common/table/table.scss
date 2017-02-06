@@ -71,7 +71,12 @@
             vertical-align: middle;
             border-top: none;
             &.td-row-actions {
+              .extra-action{
+                float: left;
+                margin-right: 10px;
+              }
               div.btn-group {
+                float: left;
                 width: 120px;
                 &.edited {
                   display: block;

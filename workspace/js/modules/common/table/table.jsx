@@ -108,6 +108,9 @@ class BasicTable extends React.Component {
             if (additionalFeature && additionalFeature.addable) {
                 this.state.addable = true;
             }
+            if (additionalFeature && additionalFeature.extraActions) {
+                this.state.extraActions = additionalFeature.extraActions;
+            }
 
             if (nextProps.tableRules && nextProps.tableRules.thead) {
                 nextProps.tableRules.thead.map(function (subItem, index) {
@@ -303,6 +306,7 @@ class BasicTable extends React.Component {
                                                      tableType={this.tableType}
                                                      editable={this.state.editable}
                                                      deletable={this.state.deletable}
+                                                     extraActions={this.state.extraActions}
                                                      getList={this.getList.bind(this)}
                                                      currentEditTdDom={this.state.currentEditTdDom}
         />;
@@ -513,7 +517,18 @@ class TableRow extends React.Component {
                             currentEditTdDom={this.props.currentEditTdDom} {...this.props}></TableTd>;
         }, this);
         if (this.props.tableType == 'row-editable') {
+            var extraActions = [];
+            if (this.props.extraActions) {
+                for (var index in this.props.extraActions) {
+                    var tempAction = this.props.extraActions[index];
+                    extraActions[index] = <ReactRouter.Link className='extra-action' key={'action-'+index}
+                                                            to={{ pathname: baseUrl + tempAction.url, query: { key: this.props.rowData.key }}}>
+                        <span>{tempAction.name}</span>
+                    </ReactRouter.Link>;
+                }
+            }
             tds.push(<td key='row-actions' className="td-row-actions">
+                {extraActions}
                 <div className="btn-group btn-group-xs edited">
                     {this.props.editable && this.props.endpoints.updateTableRowUrl &&
                     <button className="btn btn-primary btn-xs edit"
@@ -656,15 +671,15 @@ class TableTd extends React.Component {
             this.props.editable && theadItem.className == 'td-id' &&
             <ReactRouter.Link to={{ pathname: this.props.updateUrl, query: { key: this.props.rowKey }}}>
                 <span
-                    className={tdValueClassName}>{!tdItem ? rowIndex + 1 + (this.props.rowSize ? this.props.rowSize * this.props.currentPage : 0) : tdItem&&tdItem.toString()}</span>
+                    className={tdValueClassName}>{!tdItem ? rowIndex + 1 + (this.props.rowSize ? this.props.rowSize * this.props.currentPage : 0) : tdItem && tdItem.toString()}</span>
             </ReactRouter.Link>
         }{
             !this.props.editable && theadItem.className == 'td-id' &&
             <span
-                className={tdValueClassName}>{!tdItem ? rowIndex + 1 + (this.props.rowSize ? this.props.rowSize * this.props.currentPage : 0) : tdItem&&tdItem.toString()}</span>
+                className={tdValueClassName}>{!tdItem ? rowIndex + 1 + (this.props.rowSize ? this.props.rowSize * this.props.currentPage : 0) : tdItem && tdItem.toString()}</span>
         }{
             theadItem.className != 'td-id' &&
-            <span className={tdValueClassName}>{tdItem&&tdItem.toString()}</span>
+            <span className={tdValueClassName}>{tdItem && tdItem.toString()}</span>
         }{editContent}{columnEditContent}{columnEditContentAction}
         </td>);
     }

@@ -14,7 +14,7 @@ export default class TableMainBlock extends React.Component {
         return (
             <div>
                 <Panel.PanelWithHeader panelValues={{title : '投票选项列表'}}>
-                    <PollOptionListWrapper />
+                    <PollOptionListWrapper {...this.props}/>
                 </Panel.PanelWithHeader>
             </div>)
             ;
