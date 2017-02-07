@@ -123,10 +123,5 @@ module.exports = {
         articleadd: baseUrl + 'article/add',
         articlesave: baseUrl + 'article/save',
         articleoptionupdate: baseUrl + 'article/rule/update'
-    },
-    cmsfuns: {
-        template_content_position: function () {
-            alert(123);
-        }
     }
 }

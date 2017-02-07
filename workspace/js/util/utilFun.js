@@ -6,7 +6,6 @@ let utilFun = function () {
     global.locale = initial.locale;
     global.baseUrl = initial.baseUrl;
     global.endpoints = initial.endpoints;
-    global.cmsfuns = initial.cmsfuns;
 };
 utilFun.prototype = {
     name: 'utilFun',

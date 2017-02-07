@@ -48,3 +48,11 @@ export class TableAddBlock extends React.Component {
     }
 }
 
+global.template_content_position_click = function () {
+    var basicToastData = {
+        content: <span>this is a toast?</span>,
+        title: 'check toast?'
+    };
+    Toast.createToast.bind(this,basicToastData,'default')();
+}
+
