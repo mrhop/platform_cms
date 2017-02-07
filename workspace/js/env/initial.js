@@ -86,7 +86,7 @@ module.exports = {
         pollOptionadd: baseUrl + 'polloption/add',
         pollOptionsave: baseUrl + 'polloption/save',
         pollOptionoptionupdate: baseUrl + 'polloption/rule/update',
-       //operation
+        //operation
         operations: baseUrl + 'operation/list',
         deleteoperation: baseUrl + 'operation/delete',
         operationinfo: baseUrl + 'operation/info',
@@ -123,5 +123,10 @@ module.exports = {
         articleadd: baseUrl + 'article/add',
         articlesave: baseUrl + 'article/save',
         articleoptionupdate: baseUrl + 'article/rule/update'
+    },
+    cmsfuns: {
+        template_content_position: function () {
+            alert(123);
+        }
     }
 }

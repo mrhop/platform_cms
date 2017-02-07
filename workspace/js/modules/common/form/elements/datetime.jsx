@@ -75,6 +75,7 @@ export default class DateTime extends React.Component {
                                                                      placeholderText={rule.placeholder}
                                                                      locale={locale}
                                                                      todayButton={'今天'}
+                                                                     onClick={this.props.onclick}
                                                                      onChange={this.onChange.bind(this,null)}/></div>
         } else if (rule.type === 'daterange') {
             var dateTimeStart = this.props.data[this.props.name] ? this.props.data[this.props.name].dateTimeStart : null
@@ -102,6 +103,7 @@ export default class DateTime extends React.Component {
                                                                                    placeholderText={rule.placeholder}
                                                                                    locale={locale}
                                                                                    todayButton={'今天'}
+                                                                                    onClick={this.props.onclick}
                                                                                    onChange={this.onChange.bind(this,'start')}/>
             </div>
             var datetimeEndEle = <div className={dateTimeEndClass}><DatePicker fixedHeight id={this.props.id}
@@ -124,6 +126,7 @@ export default class DateTime extends React.Component {
                                                                                placeholderText={rule.placeholder}
                                                                                locale={locale}
                                                                                todayButton={'今天'}
+                                                                               onClick={this.props.onclick}
                                                                                onChange={this.onChange.bind(this,'end')}/>
             </div>
             datetimeElement =

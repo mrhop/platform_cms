@@ -71,6 +71,7 @@ export default class Checkbox extends React.Component {
                 return <li key={index}>
                     <input type="checkbox" id={this.props.id + '-' + index} name={rule.name} value={item.value}
                            onChange={this.onChange.bind(this)}
+                           onClick={this.props.onclick}
                            checked={this.props.data[this.props.name] ? (this.props.data[this.props.name].indexOf(item.value) > -1 ? 'checked' : false) : false}/>
                     <label htmlFor={this.props.id + '-' + index}>
                         <span>{item.label}</span>

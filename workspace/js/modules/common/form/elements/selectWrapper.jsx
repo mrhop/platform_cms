@@ -44,7 +44,7 @@ export default class SelectWrapper extends React.Component {
         } else {
             ruleItems = this.props.rule.items;
         }
-        let selectEle = <Select name={rule.name}
+        let selectEle = <Select name={rule.name} onClick={this.props.onclick}
                                 value={this.props.data[this.props.name] ? this.props.data[this.props.name] + ""  : null}
                                 options={ ruleItems }
                                 onChange={this.onChange.bind(this)}>

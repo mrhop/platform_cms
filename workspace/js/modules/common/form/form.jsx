@@ -197,7 +197,14 @@ class BasicForm extends React.Component {
 
     generateFormElement(id, rule, name) {
         var changeFun = null;
+        var clickFun = null;
         var changeArgs = null;
+        if(rule.changeFun){
+            changeFun = eval(rule.changeFun).bind(this);
+        }
+        if(rule.clickFun){
+            clickFun = eval(rule.clickFun).bind(this);
+        }
         if (rule.updatable) {
             //可更新
             changeFun = this.handleUpdate.bind(this);
@@ -211,28 +218,28 @@ class BasicForm extends React.Component {
         if (!rule.type || rule.type === 'text' || rule.type === 'email' ||
             rule.type === 'password' || rule.type === 'number'
             || rule.type === 'hidden' || rule.type === 'file') {
-            return <Text key={id} formType={this.formType} rule={rule} onchangeargs={changeArgs} onchange={changeFun}
+            return <Text key={id} formType={this.formType} rule={rule} onclick={clickFun} onchangeargs={changeArgs} onchange={changeFun}
                          id={id}
                          data={this.state.data} name={name}/>
         } else if (rule.type === 'radio') {
-            return <Radio key={id} formType={this.formType} rule={rule} onchangeargs={changeArgs} onchange={changeFun}
+            return <Radio key={id} formType={this.formType} rule={rule} onclick={clickFun} onchangeargs={changeArgs} onchange={changeFun}
                           id={id}
                           data={this.state.data} name={name}/>
         } else if (rule.type === 'checkbox') {
-            return <Checkbox key={id} formType={this.formType} rule={rule} onchangeargs={changeArgs}
+            return <Checkbox key={id} formType={this.formType} rule={rule} onclick={clickFun} onchangeargs={changeArgs}
                              onchange={changeFun} id={id}
                              data={this.state.data} name={name}/>
         } else if (rule.type === 'select') {
-            return <SelectWrapper key={id} formType={this.formType} onchangeargs={changeArgs} onchange={changeFun}
+            return <SelectWrapper key={id} formType={this.formType} onclick={clickFun} onchangeargs={changeArgs} onchange={changeFun}
                                   rule={rule} id={id}
                                   data={this.state.data}
                                   name={name}/>
         } else if (rule.type === 'textarea') {
-            return <Textarea key={id} formType={this.formType} rule={rule} onchangeargs={changeArgs}
+            return <Textarea key={id} formType={this.formType} rule={rule} onclick={clickFun} onchangeargs={changeArgs}
                              onchange={changeFun} id={id}
                              data={this.state.data} name={name}/>
         } else if (rule.type === 'date' || rule.type === 'daterange' || rule.type === 'time' || rule.type === 'datetime') {
-            return <Datetime key={id} formType={this.formType} rule={rule} onchangeargs={changeArgs}
+            return <Datetime key={id} formType={this.formType} rule={rule} onclick={clickFun} onchangeargs={changeArgs}
                              onchange={changeFun} id={id}
                              data={this.state.data} name={name}/>
         }

@@ -56,8 +56,8 @@ export default class Text extends React.Component {
         if(rule.readonly ){
             opts['readOnly'] = 'readOnly';
         }
-        var readonly
         const inputElement = <input className={inputClassNames} id={this.props.id} type={rule.type ? rule.type : 'text'}
+                                    onClick={this.props.onclick}
                                     name={rule.name} placeholder={rule.placeholder}
                                     value={(this.props.data[this.props.name] == 0 || this.props.data[this.props.name]) ? (rule.type === 'file' ? (this.props.data[this.props.name][this.props.id] ? this.props.data[this.props.name][this.props.id].value : '') : this.props.data[this.props.name]) : ''}
                                     autoComplete={rule.autocomplete !== undefined ? rule.autocomplete : true}

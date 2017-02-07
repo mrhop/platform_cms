@@ -48,7 +48,7 @@ export default class Radio extends React.Component {
         }
         let items = rule.items.map(function (item, index) {
             return <li key={index}>
-                <input type="radio" id={this.props.id + '-' + index} name={rule.name} value={item.value}
+                <input type="radio" onClick={this.props.onclick} id={this.props.id + '-' + index} name={rule.name} value={item.value}
                        onChange={this.onChange.bind(this)}
                        checked={this.props.data[this.props.name] ? ((this.props.data[this.props.name] === (item.value)) ? 'checked' : false) : false}/>
                 <label htmlFor={this.props.id + '-' + index}>

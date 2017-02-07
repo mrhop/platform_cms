@@ -33,7 +33,7 @@ export default class Textarea extends React.Component {
         let errorBlockClassNames = 'error-block';
 
 
-        let textareaElement = <textarea className={inputClassNames} cols="2"
+        let textareaElement = <textarea className={inputClassNames} cols="2" onClick={this.props.onclick}
                                           rows={(this.props.formType === 'inlineForm' || this.props.formType === 'blockForm') ? 1 : (rule.rows ? rule.rows : defaultRows) }
                                           id={this.props.id} name={rule.name} placeholder={rule.placeholder}
                                           onChange={this.onChange.bind(this)} value = {this.props.data[this.props.name] ? this.props.data[this.props.name] : ''}>
