@@ -665,11 +665,22 @@ class TableTd extends React.Component {
                 </div>;
 
         }
+        var updateUrl = this.props.updateUrl;
+        var query = {key: this.props.rowKey};
+        if (updateUrl.indexOf("?") > 0) {
+            var urlArr = updateUrl.split("?");
+            updateUrl = urlArr[0];
+            var paramTotalArr = urlArr[1].split("&");
+            for (var paramIndex in paramTotalArr) {
+                var paramArr = paramTotalArr[paramIndex].split("=");
+                query[paramArr[0]] = paramArr[1];
+            }
+        }
         return (<td ref={(ref) => this.tdDom = ref} colSpan={theadItem.colSpan ? theadItem.colSpan : null}
                     className={ classNames(theadItem.className, this.props.editable && theadItem && theadItem.columnEditable ? 'td-editable' : null,this.props.editable && theadItem && theadItem.className == 'td-id' ? 'td-editable' : null)}
                     onClick={this.props.editable && theadItem && theadItem.columnEditable && this.onTdClick.bind(this,theadItem.value)}>{
             this.props.editable && theadItem.className == 'td-id' &&
-            <ReactRouter.Link to={{ pathname: this.props.updateUrl, query: { key: this.props.rowKey }}}>
+            <ReactRouter.Link to={{ pathname: updateUrl, query: query}}>
                 <span
                     className={tdValueClassName}>{!tdItem ? rowIndex + 1 + (this.props.rowSize ? this.props.rowSize * this.props.currentPage : 0) : tdItem && tdItem.toString()}</span>
             </ReactRouter.Link>

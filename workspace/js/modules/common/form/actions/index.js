@@ -213,7 +213,7 @@ function validateFormClient(data, rule) {
 function validateInternal(itemData, validateRules, required) {
 
     var tmpData = null;
-    if (itemData) {
+    if (itemData!=null&&itemData!=undefined) {
         if (typeof itemData === 'number') {
             itemData = itemData + ''
         }

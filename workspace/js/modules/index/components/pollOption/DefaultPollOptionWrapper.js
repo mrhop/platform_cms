@@ -12,8 +12,9 @@ export class PollOptionListWrapper extends React.Component {
 
     render() {
         let symbol = 'table-pollOption-list'
-        return <Table.RowEditableTable minHeight={300} addUrl={baseUrl+'polloption/add.html'}
-                                       updateUrl={baseUrl+'polloption/info.html'} endpoints={{
+        return <Table.RowEditableTable minHeight={300}
+                                       addUrl={baseUrl+'polloption/add.html?key='+this.props.location.query.key}
+                                       updateUrl={baseUrl+'polloption/info.html?pollId='+this.props.location.query.key} endpoints={{
     getTableUrl: endpoints.pollOptions+'?key='+this.props.location.query.key,
     deleteTableRowUrl: endpoints.deletepollOption
 }}
@@ -25,6 +26,7 @@ export class PollOptionListWrapper extends React.Component {
 export class PollOptionUpdateWrapper extends React.Component {
     constructor(props) {
         super(props);
+        this.pollId = this.props.location.query.pollId
         this.serverFailureModalData = {
             title: '更新投票选项出错',
             footerCloseButton: {
@@ -44,16 +46,15 @@ export class PollOptionUpdateWrapper extends React.Component {
     }
 
     backup() {
-        ReactRouter.browserHistory.push(baseUrl + "polloption/list.html");
+        ReactRouter.browserHistory.push(baseUrl + "polloption/list.html?key=" +  this.pollId );
     }
 
     render() {
         let symbol = 'form-pollOption-update'
         return <Form.HorizontalForm url={endpoints.pollOptionupdate} callback={this.callback.bind(this)}
                                     initUrl={endpoints.pollOptioninfo+'?key='+this.props.location.query.key}
-                                    updateUrl={endpoints.pollOptionoptionupdate}
-                                    submitedRouteUrl={baseUrl+"polloption/list.html"}
-                                    backup={this.backup}
+                                    submitedRouteUrl={baseUrl+"polloption/list.html?key="+this.pollId}
+                                    backup={this.backup.bind(this)}
                                     symbol={symbol}/>
     }
 }
@@ -91,9 +92,9 @@ export class PollOptionAddWrapper extends React.Component {
 
     render() {
         let symbol = 'form-pollOption-add'
-        return <Form.HorizontalForm url={endpoints.pollOptionsave} callback={this.callback.bind(this)}
-                                    initUrl={endpoints.pollOptionadd}
-                                    updateUrl={endpoints.pollOptionoptionupdate}
+        return <Form.HorizontalForm url={endpoints.pollOptionsave+"?key="+this.props.location.query.key}
+                                    callback={this.callback.bind(this)}
+                                    initUrl={endpoints.pollOptionadd+"?key="+this.props.location.query.key}
                                     symbol={symbol}/>
     }
 }
