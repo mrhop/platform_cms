@@ -28,16 +28,20 @@ export default class Text extends React.Component {
             }
             this.props.data[this.props.name] = item;
         }
+        this.forceUpdate();
+    }
+
+    componentWillUpdate(nextProps, nextState){
         if (this.props.rule.validated != undefined) {
             this.props.rule.validated = true;
         }
         if (this.props.rule.errorMsg != undefined) {
             this.props.rule.errorMsg = null;
         }
-        this.forceUpdate();
     }
 
     render() {
+
         const rule = this.props.rule;
         let eleClassNames = classNames('form-group', (rule.validated === undefined || rule.validated) ? null : 'has-error', rule.className);
         let eleStyle = rule.type === 'hidden' ? {display: 'none'} : null;

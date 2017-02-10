@@ -1,0 +1,15 @@
+div.div-template-content-position{
+  .div-row{
+    height: 100px;
+    margin-top: 1px;
+    .div-column{
+      height:100%;
+      background-color: #c8c8c8;
+      border: 1px solid white;
+      &:hover,&.selected{
+        background-color: #0b97c4;
+      }
+    }
+  }
+
+}

@@ -21,8 +21,13 @@ export default class SelectWrapper extends React.Component {
         }
 
         if (this.props.onchange) {
-            this.props.onchangeargs.updateData = item  ? item : null;
-            this.props.onchange(this.props.onchangeargs);
+            if(this.props.rule.updatable){
+                this.props.onchangeargs.updateData = item  ? item : null;
+                this.props.onchange(this.props.onchangeargs);
+            }else{
+                this.props.onchange();
+            }
+
         }
 
         this.forceUpdate();

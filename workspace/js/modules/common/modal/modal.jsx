@@ -93,7 +93,7 @@ class BasicModal extends React.Component {
 
     handleAlertDismiss() {
         this.setState({alertVisible: false});
-        this.props.modalValues.closeFun && this.props.modalValues.closeFun();
+        this.props.modalValues.closeFun && this.props.modalValues.closeFun.bind(this.props._call)();
     }
 
     closeModal(e) {
@@ -106,8 +106,9 @@ class BasicModal extends React.Component {
     }
 
     confirmModal(e) {
-        this.closeModal(e);
-        this.props.modalValues.footerConfirmButton.callback.bind(this.props._call)();
+        if(this.props.modalValues.footerConfirmButton.callback.bind(this.props._call)()){
+            this.closeModal(e);
+        }
     }
 
     renderBasic(dialogExtraClass) {

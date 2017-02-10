@@ -132,13 +132,13 @@ function validateFormClient(data, rule) {
                     data[subItem.name] = {dateTimeStart: dateTimeStart, dateTimeEnd: dateTimeEnd};
                     subItemData = data[subItem.name];
                 }
-                if (!subItem.readonly && false != subItem.available && subItem.validateRules && subItem.type !== 'daterange') {
+                if (false != subItem.available && subItem.validateRules && subItem.type !== 'daterange') {
                     var validateMsg = validateInternal(subItemData, subItem.validateRules, subItem.required)
                     if (validateMsg) {
                         l_assign(subItem, validateMsg);
                         returnFlag = false
                     }
-                } else if (!subItem.readonly && false != subItem.available && subItem.validateRules && subItem.type === 'daterange') {
+                } else if (false != subItem.available && subItem.validateRules && subItem.type === 'daterange') {
                     var validateMsgDateTimeStart = null
                     var validateMsgDateTimeEnd = null
                     if (subItem.validateRules[0]) {
@@ -177,13 +177,13 @@ function validateFormClient(data, rule) {
                 data[item.name] = {dateTimeStart: dateTimeStart, dateTimeEnd: dateTimeEnd};
                 itemData = data[item.name];
             }
-            if (!item.readonly && false != item.available && item.validateRules && item.type !== 'daterange') {
+            if (false != item.available && item.validateRules && item.type !== 'daterange') {
                 var validateMsg = validateInternal(itemData, item.validateRules, item.required)
                 if (validateMsg) {
                     l_assign(item, validateMsg);
                     returnFlag = false
                 }
-            } else if (!item.readonly && false != item.available && item.validateRules && item.type === 'daterange') {
+            } else if (false != item.available && item.validateRules && item.type === 'daterange') {
                 var validateMsgDateTimeStart = null
                 var validateMsgDateTimeEnd = null
                 if (item.validateRules[0]) {
@@ -213,7 +213,7 @@ function validateFormClient(data, rule) {
 function validateInternal(itemData, validateRules, required) {
 
     var tmpData = null;
-    if (itemData!=null&&itemData!=undefined) {
+    if (itemData != null && itemData != undefined) {
         if (typeof itemData === 'number') {
             itemData = itemData + ''
         }
