@@ -50,8 +50,12 @@ export default class Checkbox extends React.Component {
         }
 
         if (this.props.onchange) {
-            this.props.onchangeargs.updateData = value && value.length > 0 ? value : null;
-            this.props.onchange(this.props.onchangeargs);
+            if (this.props.rule.updatable) {
+                this.props.onchangeargs.updateData = value && value.length > 0 ? value : null;
+                this.props.onchange(this.props.onchangeargs);
+            } else {
+                this.props.onchange(e.target);
+            }
         }
         this.forceUpdate();
     }
@@ -84,7 +88,7 @@ export default class Checkbox extends React.Component {
                 <span className="required">*</span> : null}</label>
             {this.props.formType === 'horizontalForm' ?
                 <div className="col-sm-10">
-                    {items&&<ul className="checkbox"> {items}</ul>}
+                    {items && <ul className="checkbox"> {items}</ul>}
                 </div> : <ul className="checkbox"> {items}</ul> }
             {(rule.validated === undefined || rule.validated) ? null :
                 <span className={errorBlockClassNames}>{rule.errorMsg}</span>}
