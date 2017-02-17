@@ -5,10 +5,10 @@ import rootReducer from './reducers'
 import routes from './routes'
 import middleware from './middleware'
 
-export const store = ConfigureStore.configureStore({reducer: rootReducer, middleware: middleware});
-const history = ReactRouterRedux.syncHistoryWithStore(ReactRouter.browserHistory, store)
+global.basicStore = ConfigureStore.configureStore({reducer: rootReducer, middleware: middleware});
+const history = ReactRouterRedux.syncHistoryWithStore(ReactRouter.browserHistory, global.basicStore)
 
 ReactDOM.render(
-    <RootContainer store={store} history={history} routes={routes}/>,
+    <RootContainer store={global.basicStore} history={history} routes={routes}/>,
     document.querySelector('#entirety')
 )

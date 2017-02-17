@@ -10,38 +10,39 @@ function createModal({modalValues, type, children}) {
         document.body.insertBefore(modalWrapper, document.body.children[document.body.children.length - 1].nextSibling);
     }
     if (!type || type == 'default') {
-        ReactDOM.render(<DefaultModal key={UtilFun.uuid()} modalValues={modalValues}
+        return ReactDOM.render(<DefaultModal key={UtilFun.uuid()} modalValues={modalValues}
                                       _call={this}>{children ? children : null}</DefaultModal>, modalWrapper);
     } else if (type == 'lgModal') {
         //other creation
-        ReactDOM.render(<DefaultLgModal key={UtilFun.uuid()} modalValues={modalValues}
+        return ReactDOM.render(<DefaultLgModal key={UtilFun.uuid()} modalValues={modalValues}
                                         _call={this}>{children ? children : null}</DefaultLgModal>, modalWrapper);
     } else if (type == 'smModal') {
         //other creation
-        ReactDOM.render(<DefaultSmModal key={UtilFun.uuid()} modalValues={modalValues}
+        return ReactDOM.render(<DefaultSmModal key={UtilFun.uuid()} modalValues={modalValues}
                                         _call={this}>{children ? children : null}</DefaultSmModal>, modalWrapper);
     } else if (type == 'message') {
         //other creation
-        ReactDOM.render(<MessageDefaultModal key={UtilFun.uuid()} modalValues={modalValues}
+        return ReactDOM.render(<MessageDefaultModal key={UtilFun.uuid()} modalValues={modalValues}
                                              _call={this}>{children ? children : null}</MessageDefaultModal>, modalWrapper);
     } else if (type == 'messageSuccess') {
         //other creation
-        ReactDOM.render(<MessageSuccessModal key={UtilFun.uuid()} modalValues={modalValues}
+        return ReactDOM.render(<MessageSuccessModal key={UtilFun.uuid()} modalValues={modalValues}
                                              _call={this}>{children ? children : null}</MessageSuccessModal>, modalWrapper);
     } else if (type == 'messageWarning') {
         //other creation
-        ReactDOM.render(<MessageWarningModal key={UtilFun.uuid()} modalValues={modalValues}
+        return ReactDOM.render(<MessageWarningModal key={UtilFun.uuid()} modalValues={modalValues}
                                              _call={this}>{children ? children : null}</MessageWarningModal>, modalWrapper);
     } else if (type == 'messageError') {
         //other creation
-        ReactDOM.render(<MessageErrorModal key={UtilFun.uuid()} modalValues={modalValues}
+        return ReactDOM.render(<MessageErrorModal key={UtilFun.uuid()} modalValues={modalValues}
                                            _call={this}>{children ? children : null}</MessageErrorModal>, modalWrapper);
     } else if (type == 'messageConfirm') {
         //other creation
-        ReactDOM.render(<MessageConfirmModal key={UtilFun.uuid()} modalValues={modalValues}
+        return ReactDOM.render(<MessageConfirmModal key={UtilFun.uuid()} modalValues={modalValues}
                                              _call={this}>{children ? children : null}</MessageConfirmModal>, modalWrapper);
     } else {
         //do nothing
+        return null;
     }
 }
 

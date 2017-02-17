@@ -9,6 +9,7 @@ import Checkbox from './elements/checkbox.jsx'
 import Radio from './elements/radio.jsx'
 import SelectWrapper from './elements/selectWrapper.jsx'
 import Datetime from './elements/datetime.jsx'
+import CKEditor from './elements/ckeditor.jsx'
 class BasicForm extends React.Component {
     constructor(props) {
         super(props);
@@ -241,6 +242,10 @@ class BasicForm extends React.Component {
         } else if (rule.type === 'date' || rule.type === 'daterange' || rule.type === 'time' || rule.type === 'datetime') {
             return <Datetime key={id} formType={this.formType} rule={rule} onclick={clickFun} onchangeargs={changeArgs}
                              onchange={changeFun} id={id}
+                             data={this.state.data} name={name}/>
+        }else if (rule.type === 'ckeditor') {
+            return <CKEditor key={id} id={id} formType={this.formType} rule={rule} onclick={clickFun} onchangeargs={changeArgs}
+                             onchange={changeFun}
                              data={this.state.data} name={name}/>
         }
     }

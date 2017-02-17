@@ -2,7 +2,6 @@
  * Created by Donghui Huo on 2016/5/11.
  */
 require('./index.scss');
-
 import {
     TemplateListWrapper,
     TemplateUpdateWrapper,
@@ -63,6 +62,12 @@ global.template_content_position_click = function () {
     if (this.state.data.layoutScale) {
         if (!this.state.layout) {
             this.state.layout = {};
+        }
+        if (this.state.data.contentPosition && !this.state.layout.contentPosition) {
+            this.state.layout.contentPosition = JSON.parse(this.state.data.contentPosition);
+        }
+        if (this.state.data.blocksPosition && !this.state.layout.blocksPosition) {
+            this.state.layout.blocksPosition = this.state.data.blocksPosition;
         }
         if (!this.state.layoutMethods) {
             this.state.layoutMethods = {}
@@ -240,7 +245,7 @@ global.template_content_position_click = function () {
                 if (!this.state.layout.contentPosition) {
                     this.state.data.contentPosition = null;
                 } else {
-                    this.state.data.contentPosition = "{from:[" + this.state.layout.contentPosition.from[0] + "," + this.state.layout.contentPosition.from[1] + "],to:[" + this.state.layout.contentPosition.to[0] + "," + this.state.layout.contentPosition.to[1] + "]}"
+                    this.state.data.contentPosition = "{\"from\":[" + this.state.layout.contentPosition.from[0] + "," + this.state.layout.contentPosition.from[1] + "],\"to\":[" + this.state.layout.contentPosition.to[0] + "," + this.state.layout.contentPosition.to[1] + "]}"
                 }
                 this.forceUpdate();
             },
@@ -275,6 +280,7 @@ global.template_include_blocks_change = function (target) {
         }
     } else {
         if (!this.state.data.layoutScale) {
+            this.state.data.blocksPosition = null;
             this.state.data.templateBlocks = null;
             this.forceUpdate();
             var basicModalData = {
@@ -294,6 +300,12 @@ global.template_include_blocks_change = function (target) {
                 this.state.layout = {blockTarget: target};
             } else {
                 this.state.layout.blockTarget = target;
+            }
+            if (this.state.data.contentPosition && !this.state.layout.contentPosition) {
+                this.state.layout.contentPosition = JSON.parse(this.state.data.contentPosition);
+            }
+            if (this.state.data.blocksPosition && !this.state.layout.blocksPosition) {
+                this.state.layout.blocksPosition = this.state.data.blocksPosition;
             }
             if (!this.state.layoutMethods) {
                 this.state.layoutMethods = {}
@@ -342,7 +354,6 @@ global.template_include_blocks_change = function (target) {
                     }
                     else if (this.state.layout && this.state.layout.blocksPosition) {
                         var blockOnClickfun = this.state.layoutMethods.column_block_click.bind(this, className);
-                        ;
                         for (var key in this.state.layout.blocksPosition) {
                             if (this.state.layout.blocksPosition.hasOwnProperty(key)) {
                                 var blockPosition = this.state.layout.blocksPosition[key]
@@ -387,6 +398,7 @@ global.template_include_blocks_change = function (target) {
                                 this.state.data.templateBlocks.push(parseInt(key.replace("block_id_", "")));
                             }
                         }
+                        this.state.data.blocksPosition = this.state.layout.blocksPosition;
                     }
                     this.forceUpdate();
                 },
@@ -397,5 +409,129 @@ global.template_include_blocks_change = function (target) {
             };
             Modal.createModal.bind(this, {modalValues: confirmModalData, type: 'message'})();
         }
+    }
+}
+
+global.template_include_resources_change = function (target) {
+    if (!target.checked) {
+        if (this.state.data && this.state.data.resources && this.state.data.resources["resource_id_" + target.value]) {
+            delete this.state.data.resources["resource_id_" + target.value]
+        }
+    } else {
+
+        if (!this.state.layout) {
+            this.state.layout = {resourceTarget: target};
+        } else {
+            this.state.layout.resourceTarget = target;
+        }
+
+        if (!this.state.layout.resourceFormRule) {
+            this.state.layout.resourceFormRule = {
+                "structure": [
+                    {
+                        "name": "location",
+                        "label": "资源位置",
+                        "type": "select",
+                        "required": true,
+                        "items": [{
+                            "label": "头部",
+                            "value": "head"
+                        }, {
+                            "label": "脚部",
+                            "value": "foot"
+                        }],
+                        "validateRules": [
+                            {
+                                "name": "REQUIRED_VALIDATE",
+                                "errorMsg": "不能为空"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "order",
+                        "label": "顺序",
+                        "type": "number",
+                        "required": true,
+                        defaultValue: 0,
+                        "validateRules": [
+                            {
+                                "name": "REQUIRED_VALIDATE",
+                                "errorMsg": "不能为空"
+                            }
+                        ]
+                    }
+                ],
+                "submit": {
+                    "label": "保存"
+                },
+                "reset": {
+                    "label": "重置"
+                }
+            };
+        }
+        if (!this.state.layout.resourceFormGenerateFun) {
+            this.state.layout.resourceFormGenerateFun = function () {
+                var returnObj = {
+                    "status": "success",
+                    responseData: this.state.layout.resourceFormRule
+                }
+                if (this.state.data.resources) {
+                    for (var key in this.state.data.resources) {
+                        if (this.state.data.resources.hasOwnProperty(key)) {
+                            if (parseInt(key.replace("resource_id_", "")) == parseInt(this.state.layout.resourceTarget.value)) {
+                                //FORM default value
+                                returnObj.responseData.structure[0].defaultValue = this.state.data.resources[key].location;
+                                returnObj.responseData.structure[1].defaultValue = parseInt(this.state.data.resources[key].order);
+                            }
+                        }
+                    }
+                }
+                return returnObj;
+            }
+
+        }
+        if (!this.state.layout.resourceFormUpdateFun) {
+            this.state.layout.resourceFormUpdateFun = function (dataObj) {
+                if (dataObj.data) {
+                    if (!this.state.data.resources) {
+                        this.state.data.resources = {}
+                    }
+                    this.state.data.resources["resource_id_" + this.state.layout.resourceTarget.value] = dataObj.data;
+                    this.state.layout.resourceDefaultModal.state.alertVisible = false;
+                    this.state.layout.resourceDefaultModal.forceUpdate();
+                }
+            }
+        }
+        //开始初始化modal，save的时候同步data
+        //写出form
+        var providerForm = <ReactRedux.Provider store={global.basicStore}>
+            <Form.HorizontalForm url={this.state.layout.resourceFormUpdateFun.bind(this)}
+                                 initUrl={this.state.layout.resourceFormGenerateFun.bind(this)}
+                                 symbol={"template-resource-position-form"}/>
+        </ReactRedux.Provider>;
+        var defaultModalData = {
+            content: providerForm,
+            title: '选择资源位置',
+            footerCloseButton: {
+                visible: false
+            },
+            closeFun: function () {
+                if (!this.state.data.resources) {
+                    this.state.data.templateResources = null;
+                } else {
+                    this.state.data.templateResources = [];
+                    for (var key in this.state.data.resources) {
+                        if (this.state.data.resources.hasOwnProperty(key)) {
+                            this.state.data.templateResources.push(parseInt(key.replace("resource_id_", "")));
+                        }
+                    }
+                }
+                this.forceUpdate();
+            }
+        };
+        this.state.layout.resourceDefaultModal = Modal.createModal.bind(this, {
+            modalValues: defaultModalData,
+            type: 'default'
+        })();
     }
 }
