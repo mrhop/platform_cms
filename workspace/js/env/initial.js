@@ -122,6 +122,10 @@ module.exports = {
         articleupdate: baseUrl + 'article/update',
         articleadd: baseUrl + 'article/add',
         articlesave: baseUrl + 'article/save',
-        articleoptionupdate: baseUrl + 'article/rule/update'
+        articleoptionupdate: baseUrl + 'article/rule/update',
+        //file browser
+        filelists: baseUrl + 'filelibrary/list/bytype',
+
+
     }
 }

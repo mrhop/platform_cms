@@ -1,0 +1,25 @@
+@import "../../../../scss/import";
+
+.filebrowser-wrapper {
+  height: 100%;
+  .filebrowser-form-container {
+    .select-wrapper {
+      width: 201px;
+      .Select-control {
+        width: 201px;
+      }
+    }
+  }
+  .files-container {
+    height: 100%;
+    margin-top: 20px;
+    .col-sm-3,.col-xs-6 {
+      padding-left: 22px;
+      padding-right: 22px;
+      img {
+        width: 100%;
+        cursor: pointer;
+      }
+    }
+  }
+}

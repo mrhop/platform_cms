@@ -51,7 +51,7 @@ export default class SelectWrapper extends React.Component {
         }
         let selectEle = <Select name={rule.name} onClick={this.props.onclick}
                                 value={this.props.data[this.props.name] ? this.props.data[this.props.name] + ""  : null}
-                                options={ ruleItems }
+                                options={ ruleItems } placeholder = {rule.placeholder}
                                 onChange={this.onChange.bind(this)}>
         </Select>
         switch (this.props.formType) {
