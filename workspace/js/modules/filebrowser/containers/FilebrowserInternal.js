@@ -14,6 +14,7 @@ class Filebrowser extends React.Component {
         var url = fileTemp.url;
         window.opener.CKEDITOR.tools.callFunction(this.state.CKEditorFuncNum, url);
         window.close();
+        return false;
     }
 
     callbackSuccess(data) {
@@ -32,7 +33,7 @@ class Filebrowser extends React.Component {
             this.state[parameterArr[0]] = parameterArr[1];
         }
         this.props.initFilebrowserDispatch(
-            {endpoint: endpoints.filelists + "?type=" + this.state.type})
+            {endpoint: endpoints.filelists + (this.state.type ? ("?type=" + this.state.type) : "")})
     }
 
     componentWillReceiveProps(nextProps) {
@@ -80,7 +81,7 @@ class Filebrowser extends React.Component {
             var filesResult = <span style={{marginLeft:"22px"}}>无文件</span>
             if (this.state.data && this.state.data.files) {
                 //标明可以做files的列表，然后根据type进行判断
-                if (this.state.type == "image") {
+                if (this.state.type && this.state.type == "image") {
                     var filesRows = []
                     var ceilUpNum = Math.ceil(this.state.data.files.length / 4);
                     for (var i = 0; i < ceilUpNum; i++) {
@@ -103,10 +104,16 @@ class Filebrowser extends React.Component {
 
                 } else {
                     var filesArr = []
-                    for (var index in this.state.data.files) {
-                        var fileTemp = this.state.data.files[index];
-                        filesArr[index] = <div className="col col-md-12"><a href={fileTemp.url}
-                                                                            target="_blank">{fileTemp.fileName}</a>
+                    filesArr[0] = <div className="row" key={"file-row-0"}>
+                        <div key={"column-1"} className="col col-sm-8 col-xs-6">名称</div>
+                        <div key={"column-2"} className="col col-sm-4 col-xs-6">类型</div>
+                    </div>
+                    for (var i = 1;i<=  this.state.data.files.length;i++) {
+                        var fileTemp = this.state.data.files[i-1];
+                        filesArr[i] = <div className="row" key={"file-row-"+i}>
+                            <div key={"column-1"} className="col col-sm-8 col-xs-6"><a href={fileTemp.url}
+                                                                                      onClick={this.onclick.bind(this,fileTemp)}>{fileTemp.fileName}</a></div>
+                            <div key={"column-2"} className="col col-sm-4 col-xs-6">{fileTemp.type}</div>
                         </div>
                     }
                     filesResult = <CustomScrollbar ref="scrollbar-files">{filesArr}</CustomScrollbar>

@@ -24,7 +24,8 @@ export default class CKEditor extends React.Component {
 
         let ckeditorElement = <textarea className={inputClassNames} onClick={this.props.onclick}
                                         rows={(this.props.formType === 'inlineForm' || this.props.formType === 'blockForm') ? 1 : (rule.rows ? rule.rows : defaultRows) }
-                                        id={this.props.id} name={rule.name}  defaultValue = {this.props.data[this.props.name] ? this.props.data[this.props.name] : ''}>
+                                        id={this.props.id} name={rule.name}
+                                        defaultValue={this.props.data[this.props.name] ? this.props.data[this.props.name] : ''}>
 
             </textarea>
         switch (this.props.formType) {
@@ -55,25 +56,35 @@ export default class CKEditor extends React.Component {
             language: 'zh-cn',
             uiColor: '#9AB8F3',
             toolbar: [
-                { name: 'document', items: [ 'Print' ] },
-                { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
-                { name: 'styles', items: [ 'Styles','Format', 'Font', 'FontSize' ] },
-                { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting' ] },
-                { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                { name: 'align', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
-                { name: 'links', items: [ 'Link', 'Unlink' ] },
-                { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
-                { name: 'insert', items: [ 'Image', 'EmbedSemantic', 'Flash', 'Table','HorizontalRule','SpecialChar' ] },
-                { name: 'tools', items: [ 'Maximize' ] },
-                { name: 'document', items: [ 'Source' ] },
-                { name: 'editing', items: ['Scayt' ] }
+                {name: 'document', items: ['Print']},
+                {name: 'clipboard', items: ['Undo', 'Redo']},
+                {name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize']},
+                {
+                    name: 'basicstyles',
+                    items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting']
+                },
+                {name: 'colors', items: ['TextColor', 'BGColor']},
+                {name: 'align', items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+                {name: 'links', items: ['Link', 'Unlink']},
+                {
+                    name: 'paragraph',
+                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']
+                },
+                {name: 'insert', items: ['Image', 'EmbedSemantic', 'Flash', 'Table', 'HorizontalRule', 'SpecialChar']},
+                {name: 'tools', items: ['Maximize']},
+                {name: 'document', items: ['Source']},
+                {name: 'editing', items: ['Scayt']}
             ],
             //考虑css的植入，从服务器来，basic部分的css，就像basic.css include bootstrap animated.css 等，就足够了
             //contentsCss: [ 'https://cdn.ckeditor.com/4.6.1/full-all/contents.css', 'mystyles.css' ],
             bodyClass: 'main-content',
             extraPlugins: 'tableresize,uploadimage,uploadfile,embedsemantic,flash',
-            filebrowserBrowseUrl:baseUrl+"filebrowser.html?type=image",
-            filebrowserUploadUrl:'/browser/upload.php'
+            filebrowserBrowseUrl: baseUrl + "filebrowser.html",
+            filebrowserImageBrowseUrl: baseUrl + "filebrowser.html?type=image",
+            filebrowserFlashBrowseUrl: baseUrl + "filebrowser.html?type=flash",
+            filebrowserUploadUrl: baseUrl + "filelibrary/upload/byckeditor",
+            filebrowserImageUploadUrl: baseUrl + "filelibrary/upload/byckeditor?type=image",
+            filebrowserFlashUploadUrl: baseUrl + "filelibrary/upload/byckeditor?type=flash"
         };
         CKEDITOR.replace(this.elementName, configuration);
         CKEDITOR.instances[this.elementName].on("change", function () {
@@ -85,7 +96,7 @@ export default class CKEditor extends React.Component {
             if (this.props.rule.errorMsg != undefined) {
                 this.props.rule.errorMsg = null;
             }
-            this.props.onchange&&this.props.onchange(CKEDITOR.instances[this.elementName]);
+            this.props.onchange && this.props.onchange(CKEDITOR.instances[this.elementName]);
             this.forceUpdate();
         }.bind(this));
     }
