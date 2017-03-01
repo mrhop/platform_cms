@@ -22,12 +22,13 @@ const deleteRowConfirmModalData = {
     content: <span>删除一行，无法恢复.</span>,
     title: '确定要删除该记录?',
     closeFun: function () {
-        console.log('before close');
+        //console.log('before close');
         return true;
     },
     footerConfirmButton: {
         callback: function () {
             this.deleteRow();
+            return true;
         },
         title: '确认',
     },
