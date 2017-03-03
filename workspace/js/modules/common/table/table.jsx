@@ -310,7 +310,7 @@ class BasicTable extends React.Component {
                                                          name={subItem.name}/>
                         } else if (subItem.type === 'tree') {
                             editContent = <Tree.BasicTree url={subItem.url} formType="noLabelForm" name={subItem.name}
-                                                          symbol={this.props.symbol+"-tree-"+index}
+                                                          symbol={this.props.symbol+"-tree-"+index} data={this.state.filter.data}
                                                           onchange={onFilter}></Tree.BasicTree>
                         }
                         // if (subItem.type != "tree") {

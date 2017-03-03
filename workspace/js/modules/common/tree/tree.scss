@@ -1,107 +1,80 @@
 @import "../../../../scss/import";
 
-#toast-container {
-  position: fixed;
-  z-index: 999999
-}
-
-#toast-container.right-top {
-  top: 12px;
-  right: 12px;
-}
-
-#toast-container .toast {
+.tree-wrapper {
   position: relative;
-  @include transition(all 0.3s ease);
-  display: none;
-  overflow: hidden;
-  margin: 0 0 6px;
-  padding: 15px 15px 15px 50px;
-  width: 400px;
-  @media (max-width: $screen-xs-min - 1) {
-    width: 300px;
-  }
-  font-size: 14px;
-  @include border-radius(3px);
-  @include box-shadow(0 0 12px #999);
-  color: #FFF;
-  background-color: $brand-primary;
-  opacity: 1;
-  &.open {
-    @include animation-fill-mode(both);
-    @include animation(toast-show 300ms linear);
-  }
-  &.close{
-    @include animation-fill-mode(both);
-    @include animation(toast-hide 300ms linear);
-  }
-  &:hover {
-    @include box-shadow(0 0 12px #fff);
-  }
-  &.toast-success {
-    background-color: $brand-success;
-    .left-icon{
-      i:before{
-        content: "\e90e";
-      }
+  .tree-input-wrapper {
+    input {
+      width: 100%;
     }
   }
-  &.toast-warning {
-    background-color: $brand-warning;
-    .left-icon{
-      i:before{
-        content: "\e90c";
-      }
+  .tree-items-wrapper {
+    &.tree-hidden {
+      display: none;
     }
-  }
-  &.toast-error {
-    background-color: $brand-danger;
-    .left-icon{
-      i:before{
-        content: "\e90f";
-      }
-    }
-  }
-  .toast-title {
-    font-size: 16px;
-    font-weight: 700;
-  }
-  .left-icon{
     position: absolute;
-    left: 10px;
-    top:50%;
-    i{
-      display: block;
-      line-height: 30px;
-      font-size: 30px;
-      margin-top: -15px;
-      &:before{
-        content: "\e90d";
+    width: 100%;
+    ul.tree-items {
+      background: $input-bg;
+      list-style: none;
+      padding-left: 0px;
+      li.tree-item {
+        cursor: pointer;
+        padding: 3px 0px;
+        margin-left: 10px;
+        > div.tree-item-div {
+          span.item-icon:before {
+            margin-right: 5px;
+            font-family: 'Glyphicons Halflings';
+            content: "\e022";
+          }
+        }
+        div.tree-item-div:hover{
+          background: rgba(255, 255, 255, 0.7);
+          color: #333;
+          span.item-value {
+            text-decoration: underline;
+            color: $brand-primary;
+          }
+        }
+         &.selected {
+          > div.tree-item-div {
+            background: rgba(255, 255, 255, 0.7);
+            color: #333;
+            span.item-value {
+              text-decoration: underline;
+              color: $brand-primary;
+            }
+          }
+        }
+
+        &.has-child {
+          > ul.tree-items {
+            display: none;
+          }
+          > div.tree-item-div {
+             span.item-icon:before {
+              content: "\e117";
+            }
+          }
+        }
+        &.has-child.opened {
+          > ul.tree-items {
+            display: block;
+          }
+          > div.tree-item-div {
+            span.item-icon:before {
+              content: "\e118";
+            }
+          }
+        }
+
       }
     }
-  }
-
-  .close {
-    margin-top: -5px;
-    padding: 0;
-    cursor: pointer;
-    color: #fff;
-    background: 0 0;
-    border: 0;
-    outline: 0 !important;
-    opacity: 1;
-    float: right;
-    font-size: 21px;
-    line-height: 1;
-    text-shadow: 0 1px 0 #fff;
-    font-weight: 700;
-    &:hover{
-      color: $gray;
-      text-shadow: 0 1px 0 $gray;
-    }
-    &:before{
-      content: '\e90b';
+    > ul.tree-items{
+      > li.tree-item{
+        margin-left: 3px;
+        margin-right: 3px;
+      }
     }
   }
 }
-//after close,delete? and click create,not create before

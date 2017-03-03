@@ -1,6 +1,12 @@
+$icon-font-path: "../assets/fonts/bootstrap/" !default;
+$icon-font-name: "glyphicons-halflings-regular" !default;
 $icomoon-icon-font-path: "../assets/fonts/icomoon/" !default;
 $icomoon-icon-font-name: "icomoon" !default;
 @font-face {
   font-family: 'Icomoon Icon';
   src: url('#{$icomoon-icon-font-path}#{$icomoon-icon-font-name}.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('#{$icon-font-path}#{$icon-font-name}.ttf') format('truetype'),
 }

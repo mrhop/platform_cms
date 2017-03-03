@@ -10,40 +10,92 @@ class BasicTree extends React.Component {
     constructor(props) {
         super(props);
         //需要在receiveprops的时候进行data的植入和更新
-        this.state = {parentId: this.props.parentId}
+        this.state = {parentId: this.props.parentId, treeHidden: true};
     }
 
     componentWillMount() {
-        if(this.props.url){
-            this.getTreeDispatch({endpoint: this.props.url, parentId: this.state.parentId, symbol: this.props.symbol});
+        if (this.props.url) {
+            if (this.state.parentId) {
+                this.props.getTreeDispatch({
+                    endpoint: this.props.url,
+                    parentId: this.state.parentId,
+                    symbol: this.props.symbol
+                });
+            } else {
+                this.props.getTreeDispatch({endpoint: this.props.url, symbol: this.props.symbol});
+            }
         }
     }
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps.url != this.props.url) {
+            this.state.parentId = nextProps.parentId;
+            delete this.state.treeData;
+            if (this.state.parentId) {
+                this.props.getTreeDispatch({
+                    endpoint: nextProps.url,
+                    parentId: this.state.parentId,
+                    symbol: this.props.symbol
+                });
+            } else {
+                this.props.getTreeDispatch({endpoint: nextProps.url, symbol: this.props.symbol});
+            }
+        }
         if (nextProps.treeData && !this.state.treeData) {
             this.state.treeData = nextProps.treeData;
         }
     }
 
-
-    clickIcon(target) {
-        //判断target是否有child，判断是open还是close状态,判断是否已经读取了数据,然后进行获取
-        console("clickIcon")
-    }
-
-    clickInput(target) {
+    clickInput() {
         //点击input的时候，弹出tree在其下方
-        console("clickInput")
+        console.log("clickInput");
+        if (this.state.treeHidden) {
+            this.state.treeHidden = false;
+        } else {
+            this.state.treeHidden = true;
+        }
+        this.forceUpdate();
     }
 
-    click(target) {
+    clickIcon(item) {
+        //判断target是否有child，判断是open还是close状态,判断是否已经读取了数据,然后进行获取
+        console.log("clickIcon")
+        this.state.iconClicked = true;
+        if (item.hasChild) {
+            if(item.opened){
+                //关闭
+                delete item.opened;
+                delete this.state.parentId
+                this.forceUpdate();
+            }else{
+                item.opened = true
+                this.state.parentId = item.id;
+                if (item.children) {
+                    this.forceUpdate();
+                } else {
+                    this.props.getTreeDispatch({
+                        endpoint: this.props.url,
+                        parentId: this.state.parentId,
+                        symbol: this.props.symbol
+                    });
+                }
+            }
+          
+        }
+        //do force stop progerate
+    }
+
+    click(item) {
         //点击目标，并将值写入input中即可
         //当有callback时，执行callback
-        console("click")
-        //
-        //this.props.item.value = target.value;
-        if(this.props.onchange){
-            this.props.onchange();
+        if (!this.state.iconClicked) {
+            this.state.treeHidden = true;
+            this.state.defaultTitle = item.name;
+            this.props.data && (this.props.data[this.props.name] = item.id )
+            this.props.onchange&&this.props.onchange();
+            this.forceUpdate();
+        } else {
+            delete this.state.iconClicked
         }
     }
 
@@ -53,14 +105,15 @@ class BasicTree extends React.Component {
             //生成dom，首先是一个div--input，然后是div-ul-li,最后是一个wrapper
             var inputDom = <div className="tree-input-wrapper"><input type="text"
                                                                       onClick={this.clickInput.bind(this)}
-                                                                      readonly className="tree-input"
+                                                                      readOnly="readonly" className="tree-input"
                                                                       value={this.state.defaultTitle}/></div>
             var treeDomItems = [];
             for (var i = 0; i < this.state.treeData.length; i++) {
                 treeDomItems[i] = this.generateTreeItem(this.state.treeData[i]);
             }
-            var treeDom = <div className="tree-items-wrapper">
-                <ul className="tree-items" onClick={this.clickIcon.bind(this)}>{treeDomItems}</ul>
+            var className = "tree-items-wrapper" + (this.state.treeHidden ? " tree-hidden" : "");
+            var treeDom = <div className={className}>
+                <ul className="tree-items">{treeDomItems}</ul>
             </div>
             return <div id={this.props.id} className="tree-wrapper">{inputDom}{treeDom}</div>
         } else {
@@ -69,24 +122,26 @@ class BasicTree extends React.Component {
     }
 
     generateTreeItem(item) {
-        var className = "tree-item" + (item.hasChild ? " has-child" : "");
-        if (item.id === this.props.parentId) {
-            item.children = this.props.tableData;
+        var className = "tree-item" + (item.hasChild ? " has-child" : "")+(this.props.data && (this.props.data[this.props.name] == item.id )?" selected":"");
+        if (item.id === this.state.parentId) {
+            item.children = this.props.treeData;
         }
         if (item.children) {
             var treeDomItems = []
             for (var i = 0; i < item.children.length; i++) {
                 var tempItem = item.children[i];
-                treeDomItems[i] = generateTreeItem(tempItem)
+                treeDomItems[i] = this.generateTreeItem(tempItem)
             }
-            var className = className + (item.id === this.props.parentId ? " opened" : "");
-            return <li className={className} data-value={item.id} onClick={this.clickIcon.bind(this)}><span
-                data-value={item.id} data-title={item.title}
-                onClick={this.click.bind(this)}>{item.title}</span>
+            var className = className + (item.id === this.state.parentId ? " opened" : "");
+            return <li key={"li-"+item.id} className={className} data-value={item.id}><div className="tree-item-div"  onClick={this.click.bind(this,item)}><span className="item-icon"
+                                                                  onClick={this.clickIcon.bind(this,item)}></span><span
+                className="item-value">{item.title}</span></div>
                 <ul className="tree-items">{treeDomItems}</ul>
             </li>
         } else {
-            return <li className={className}><span data-value={item.id}>{item.title}</span></li>;
+            return <li key={"li-"+item.id} className={className}><div className="tree-item-div"  onClick={this.click.bind(this,item)}><span
+                className="item-icon" onClick={this.clickIcon.bind(this,item)}></span><span
+                className="item-value">{item.title}</span></div></li>;
         }
     }
 
@@ -97,14 +152,12 @@ function mapStateToProps(state, ownProps) {
         const {
             status,
             message,
-            treeData,
-            parentId
+            treeData
         } = state.tree.main[ownProps.symbol]
         return {
             status,
             message,
-            treeData,
-            parentId
+            treeData
         }
     } else {
         return {};
