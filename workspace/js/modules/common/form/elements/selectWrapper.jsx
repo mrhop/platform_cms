@@ -68,9 +68,9 @@ export default class SelectWrapper extends React.Component {
                     </div>
         }
         return <div className={eleClassNames}>
-            <label
+            {this.props.formType!="noLabelForm"?(<label
                 className={labelClassNames}>{rule.label ? rule.label : null}{rule.label && rule.required ?
-                <span className="required">*</span> : null}</label>
+                <span className="required">*</span> : null}</label>):""}
             {selectEle}
             {(rule.validated === undefined || rule.validated) ? null :
                 <span className={errorBlockClassNames}>{rule.errorMsg}</span>}

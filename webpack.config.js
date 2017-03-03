@@ -52,7 +52,8 @@ const commonComponentsJs = [
     __dirname + '/workspace/js/modules/common/table/table.jsx',
     __dirname + '/workspace/js/modules/common/toast/toast.jsx',
     __dirname + '/workspace/js/modules/common/form/form.jsx',
-    __dirname + '/workspace/js/modules/common/dragDrop/dragDrop.jsx'];
+    __dirname + '/workspace/js/modules/common/dragDrop/dragDrop.jsx',
+    __dirname + '/workspace/js/modules/common/tree/tree.jsx'];
 var moduleAll = new Object({'vendor': vendorJs, 'tools': toolsJs, 'common-components': commonComponentsJs});
 
 var walk = function (dir) {
@@ -178,6 +179,7 @@ module.exports = {
             'Toast': __dirname + '/workspace/js/modules/common/toast/toast.jsx',
             'Form': __dirname + '/workspace/js/modules/common/form/form.jsx',
             'DragDrop': __dirname + '/workspace/js/modules/common/dragDrop/dragDrop.jsx',
+            'Tree': __dirname + '/workspace/js/modules/common/tree/tree.jsx',
         }),
         new ExtractTextPlugin('./css/[name].css', {
             allChunks: true

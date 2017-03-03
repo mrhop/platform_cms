@@ -33,10 +33,13 @@ function main(state = {}, action) {
                     }
                     if (state[action.requestCondition.symbol].tableRules && action.response.responseData.updateRules) {
                         for (var i in action.response.responseData.updateRules) {
-                            var value = action.response.responseData.updateRules[i].value;
+                            var name = action.response.responseData.updateRules[i].name;
                             for (var j in state[action.requestCondition.symbol].tableRules.thead) {
-                                if (value == state[action.requestCondition.symbol].tableRules.thead[j].value) {
+                                if (name == state[action.requestCondition.symbol].tableRules.thead[j].name) {
+                                    state[action.requestCondition.symbol].tableRules.thead[j].changed = true;
                                     l_assign(state[action.requestCondition.symbol].tableRules.thead[j], action.response.responseData.updateRules[i]);
+                                }else {
+                                    state[action.requestCondition.symbol].tableRules.thead[j].changed = false;
                                 }
                             }
                         }

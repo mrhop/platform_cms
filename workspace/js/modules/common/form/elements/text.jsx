@@ -29,6 +29,7 @@ export default class Text extends React.Component {
             this.props.data[this.props.name] = item;
         }
         this.forceUpdate();
+        this.props.onchange&&this.props.onchange();
     }
 
     componentWillUpdate(nextProps, nextState){
@@ -50,12 +51,14 @@ export default class Text extends React.Component {
         let inputClassNames = classNames('form-control', (rule.type ? rule.type : 'text'));
         let labelClassNames = null
         let errorBlockClassNames = 'error-block';
-
-        switch (this.props.formType) {
-            case 'horizontalForm':
-                labelClassNames = 'col-sm-2'
-                errorBlockClassNames = classNames(errorBlockClassNames, 'col-sm-10')
+        if(this.props.formType){
+            switch (this.props.formType) {
+                case 'horizontalForm':
+                    labelClassNames = 'col-sm-2'
+                    errorBlockClassNames = classNames(errorBlockClassNames, 'col-sm-10')
+            }
         }
+
         var opts = {};
         if(rule.readonly ){
             opts['readOnly'] = 'readOnly';
@@ -66,11 +69,11 @@ export default class Text extends React.Component {
                                     value={(this.props.data[this.props.name] == 0 || this.props.data[this.props.name]) ? (rule.type === 'file' ? (this.props.data[this.props.name][this.props.id] ? this.props.data[this.props.name][this.props.id].value : '') : this.props.data[this.props.name]) : ''}
                                     autoComplete={rule.autocomplete !== undefined ? rule.autocomplete : true}
                                     onChange={this.onChange.bind(this)} {...opts}/>
-        return <div className={eleClassNames} style={eleStyle}><label
+        return <div className={eleClassNames} style={eleStyle}>{this.props.formType!="noLabelForm"?(<label
             htmlFor={this.props.id}
             className={labelClassNames}>{rule.label ? rule.label : null}{rule.label && rule.required ?
-            <span className="required">*</span> : null}</label>
-            {this.props.formType === 'horizontalForm' ?
+            <span className="required">*</span> : null}</label>):""}
+            {this.props.formType&&this.props.formType === 'horizontalForm' ?
                 <div className="col-sm-10 input-wrapper">{inputElement}</div> : inputElement }
             {(rule.validated === undefined || rule.validated) ? null :
                 <span className={errorBlockClassNames}>{rule.errorMsg}</span>}

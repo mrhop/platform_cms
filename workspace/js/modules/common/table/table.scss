@@ -59,6 +59,15 @@
               border-color: rgba(0, 0, 0, .1);
               padding: 6px 3px;
             }
+            .form-group{
+              margin-bottom: 0;
+              input{
+                background-color: rgba(0, 0, 0, .5);
+                height: 25px;
+                border-color: rgba(0, 0, 0, .1);
+                padding: 6px 3px;
+              }
+            }
           }
         }
       }
