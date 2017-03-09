@@ -247,6 +247,10 @@ class BasicForm extends React.Component {
             return <CKEditor key={id} id={id} formType={this.formType} rule={rule} onclick={clickFun} onchangeargs={changeArgs}
                              onchange={changeFun}
                              data={this.state.data} name={name}/>
+        }else if (rule.type === 'tree') {
+            return <Tree.BasicTree key={id}  url={rule.url} formType={this.formType} rule={rule} name={name}
+                                   symbol={id+"-tree"} data={this.state.data}
+                                   onchange={changeFun}></Tree.BasicTree>
         }
     }
 

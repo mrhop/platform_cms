@@ -62,8 +62,7 @@ export default class SelectWrapper extends React.Component {
                     {selectEle}
                 </div>
             case  'inlineForm':
-                selectEle =
-                    <div className="select-first-wrapper">
+                selectEle = <div className="select-first-wrapper">
                         <div className="select-second-wrapper"> {selectEle}</div>
                     </div>
         }

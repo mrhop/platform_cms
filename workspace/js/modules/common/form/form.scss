@@ -209,7 +209,7 @@
 }
 
 .horizontalForm {
-  .form-group, .checkbox-wrapper, .radio-wrapper, .select-wrapper, .datetime-wrapper {
+  .form-group, .checkbox-wrapper, .radio-wrapper, .select-wrapper, .datetime-wrapper,.tree-wrapper {
     &:after {
       content: '';
       display: block;
